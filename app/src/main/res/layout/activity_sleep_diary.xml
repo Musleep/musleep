@@ -5,15 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:orientation="horizontal"
     tools:context=".sleep_diary">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
 
         <TextClock
             android:layout_width="wrap_content"
@@ -22,7 +23,7 @@
             android:gravity="center_vertical"
             android:textColor="#968C8C"
             android:textSize="25dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/data_pick"
@@ -37,21 +38,25 @@
     <LinearLayout
         android:layout_width="900dp"
         android:layout_height="450dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
         android:background="#B3F0E5DE"
         android:elevation="20dp"
-        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:gravity="center">
+    <LinearLayout
+        android:layout_width="850dp"
+        android:layout_height="400dp"
         android:layout_centerHorizontal="true"
         android:orientation="horizontal">
-
-
         <TableLayout
-            android:layout_width="850dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:layout_gravity="center_vertical"
-            android:visibility="visible">
+            android:visibility="visible"
+            tools:ignore="MissingConstraints">
+
 
             <TableRow
                 android:layout_width="match_parent"
@@ -68,31 +73,7 @@
                     android:textAlignment="center"
                     android:textColor="#A86959"
                     android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/header"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#CFB194"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textColor="#A86959"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/header2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#CFB194"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textColor="#A86959"
-                    android:textSize="16sp" />
-
             </TableRow>
-
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -103,31 +84,10 @@
                     android:layout_height="wrap_content"
                     android:background="@color/light_brown2"
                     android:padding="10sp"
-                    android:text="就寢時間"
+                    android:text="睡眠中醒來"
                     android:textAlignment="center"
                     android:textColor="#A86959"
                     android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/sleeptime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/data2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
             </TableRow>
 
             <TableRow
@@ -140,29 +100,9 @@
                     android:layout_height="wrap_content"
                     android:background="@color/light_brown2"
                     android:padding="10sp"
-                    android:text="睡著所需時間"
+                    android:text="小睡一會"
                     android:textAlignment="center"
                     android:textColor="#A86959"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/fallsleeptime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/data4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
                     android:textSize="16sp" />
             </TableRow>
 
@@ -176,33 +116,12 @@
                     android:layout_height="wrap_content"
                     android:background="@color/light_brown2"
                     android:padding="10sp"
-                    android:text="醒來次數"
+                    android:text="喝含咖啡因飲料"
                     android:textAlignment="center"
                     android:textColor="#A86959"
                     android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/wakeup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/data6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
             </TableRow>
-
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -213,29 +132,9 @@
                     android:layout_height="wrap_content"
                     android:background="@color/light_brown2"
                     android:padding="10sp"
-                    android:text="起床時間"
+                    android:text="喝酒"
                     android:textAlignment="center"
                     android:textColor="#A86959"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/wakeuptime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/data8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
                     android:textSize="16sp" />
 
             </TableRow>
@@ -249,30 +148,10 @@
                     android:layout_height="wrap_content"
                     android:background="@color/light_brown2"
                     android:padding="10sp"
-                    android:text="總計睡眠時間"
+                    android:text="服用幫助睡眠之藥物"
                     android:textAlignment="center"
                     android:textColor="#A86959"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/totalsleep"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/data10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
             </TableRow>
             <TableRow
@@ -285,142 +164,20 @@
                     android:layout_height="wrap_content"
                     android:background="@color/light_brown2"
                     android:padding="10sp"
-                    android:text="自覺睡眠品質"
+                    android:text="運動"
                     android:textAlignment="center"
                     android:textColor="#A86959"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/sleepcp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/data12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/item7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="睡眠效率"
-                    android:textAlignment="center"
-                    android:textColor="#A86959"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/sleepeffec"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/data14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/item8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="多少次小睡"
-                    android:textAlignment="center"
-                    android:textColor="#A86959"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/nap"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/data16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/item9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="總共小睡幾分鐘"
-                    android:textAlignment="center"
-                    android:textColor="#A86959"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/naptime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/data18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="TextView"
-                    android:textAlignment="center"
                     android:textSize="16sp" />
 
             </TableRow>
         </TableLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/diary_list"
+            android:layout_width="700dp"
+            android:layout_height="450dp"
+            android:orientation="horizontal" />
 
+    </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>
