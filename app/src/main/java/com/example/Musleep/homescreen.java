@@ -23,20 +23,43 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class homescreen extends AppCompatActivity {
 
     ImageView imageView;
     TextView name;
-
+    TextView uid;
+    FirebaseFirestore db;
     GoogleSignInClient mGoogleSignInClient;
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+    Button sleep1, sleep2, sleep3;
+    FirebaseAuth firebaseAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen);
+        db = FirebaseFirestore.getInstance();
+        firebaseAuth = firebaseAuth.getInstance();
+
+        Log.i("INFO",firebaseAuth.getUid()+"123123");
+//        TextView uid = (TextView) findViewById(R.id.uid);
+
+        //顯示
+//        uid.setText(firebaseAuth.getUid()+"123123");
+
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+//        Log.d("tag",mAuth.getCurrentUser().getUid());
+//        String current_user_id = mAuth.getCurrentUser().getUid();
+
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         Log.d("tag","onCreate:");
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -47,6 +70,12 @@ public class homescreen extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageView);
         name = findViewById(R.id.username);
+//        uid = findViewById(R.id.uid);
+//        if (firebaseUser != null) {
+//            String personUid = firebaseAuth.getUid();
+//            uid.setText(personUid);
+//        }
+        // uid = findViewById(R.id.uid);
 
 
         findViewById(R.id.sleep1).setOnClickListener(new View.OnClickListener(){
@@ -58,13 +87,14 @@ public class homescreen extends AppCompatActivity {
         findViewById(R.id.sleep2).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                startActivity(new Intent(getApplicationContext(), sleep_record.class));
+                startActivity(new Intent(getApplicationContext(), MusicTest.class));
             }
         });
         findViewById(R.id.sleep3).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 startActivity(new Intent(getApplicationContext(), sleep_diary.class));
+
             }
         });
 
@@ -78,6 +108,7 @@ public class homescreen extends AppCompatActivity {
             Glide.with(this).load(String.valueOf(personPhoto)).into(imageView);
         }
     }
+
     public void logout(final View view) {
         FirebaseAuth.getInstance().signOut();
 
@@ -85,7 +116,7 @@ public class homescreen extends AppCompatActivity {
                 .signOut().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                startActivity(new Intent(view.getContext(),MainActivity.class));
+                startActivity(new Intent(view.getContext(),Loading.class));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

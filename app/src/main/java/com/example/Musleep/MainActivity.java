@@ -28,6 +28,7 @@ import com.google.firebase.auth.OAuthCredential;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -106,10 +107,34 @@ public class MainActivity extends AppCompatActivity {
                     space.put("ID",firebaseAuth.getUid());
                     db.collection("User")
                             .document(firebaseAuth.getUid())
-                            .set(space);
+                            .set(space, SetOptions.merge());
 //                    uidref = db.collection("User").document(firebaseAuth.getUid());
                     Toast.makeText(getApplicationContext(), "Your Google Account is Connected to Our Application.", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(),userdata.class));
+                    DocumentReference docRef = db.collection("User").document(firebaseAuth.getUid());
+                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    Log.d("TAG", "DocumentSnapshot data: " + document.getData());
+                                    Log.d("TAG", "DocumentSnapshot data: " + document.getData().size());
+                                    if (document.getData().size() == 1){
+                                        startActivity(new Intent(getApplicationContext(), userdata.class));
+                                    }else {
+                                        startActivity(new Intent(getApplicationContext(), homescreen.class));
+                                    }
+                                    return;
+
+                                } else {
+                                    Log.d("TAG", "No such document");
+                                }
+                            } else {
+                                Log.d("TAG", "get failed with ", task.getException());
+                            }
+                        }
+                    });
+
 //                    if (task.isSuccessful()){
 //                        DocumentSnapshot document = task.getResult();
 //                        if(uidref != null) {

@@ -65,7 +65,7 @@ public class MusicTest extends AppCompatActivity {
     RadioButton relax,nofeel,stress;
     private int currentPlaying = 0; //用ArrayList放當前播放的歌曲
     private ArrayList<Integer> playList = new ArrayList<>();
-
+private RadioGroup radioGroup;
     private boolean isPausing = false, isPlaying = false; //音樂暫停狀態, 音樂第一次播放之後變為true
 
 
@@ -154,8 +154,8 @@ public class MusicTest extends AppCompatActivity {
                         break;
                 }
             }
-        });
 
+        });
 
         init();
         preparePlaylist();
@@ -170,6 +170,8 @@ public class MusicTest extends AppCompatActivity {
         new Timer().scheduleAtFixedRate(timerTask, 0, 500);
 
     }
+
+
     //初始化
     void init(){
         diskImage = findViewById(R.id.iv_img1);
@@ -179,7 +181,7 @@ public class MusicTest extends AppCompatActivity {
         prevBtn = findViewById(R.id.btn_prev);
         playBtn = findViewById(R.id.btn_play_pause);
         nextBtn = findViewById(R.id.btn_next);
-
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.feelings);
 
         onClickControl onClick = new onClickControl();
         prevBtn.setOnClickListener(onClick); //傳遞參數
@@ -194,6 +196,10 @@ public class MusicTest extends AppCompatActivity {
         animator.setDuration(10000); //轉動時間，10秒
         animator.setInterpolator(new LinearInterpolator()); //時間函數
         animator.setRepeatCount(-1); //一直轉動
+    }
+    private void uncheckRadioGroup() {
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.feelings);
+        radioGroup.clearCheck();
     }
 
     //歌曲加入陣列
@@ -238,25 +244,6 @@ public class MusicTest extends AppCompatActivity {
             currentTime.setText(time); //更新目前音樂時間
         });
     }
-    private void getAllDocs() {
-        DocumentReference docRef = db.collection("User").document("AmLLKkyqNYVcDCUV3mhTVN8Tfe23").collection("week0").document("FirstScore");
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d("TAG", "DocumentSnapshot data: " + document.getData());
-                        Log.d("TAG", "DocumentSnapshot data: " + document.getData().size());
-                    } else {
-                        Log.d("TAG", "No such document");
-                    }
-                } else {
-                    Log.d("TAG", "get failed with ", task.getException());
-                }
-            }
-        });
-    }
 
     //控制上一首，下一首，撥放暫停
     private class onClickControl implements View.OnClickListener{
@@ -272,7 +259,6 @@ public class MusicTest extends AppCompatActivity {
                     if (!player.isPlaying()){ //非正在播放狀態才可以切歌
                         currentPlaying = --currentPlaying % playList.size();
                     }
-
                     prepareMedia();
                     isPausing = false;
                     isPlaying = true;
@@ -302,7 +288,8 @@ public class MusicTest extends AppCompatActivity {
 
                     break;
                 case R.id.btn_next:
-
+                    //清空radio
+                    uncheckRadioGroup();
                     DocumentReference docRef = db.collection("User").document(mAuth.getUid()).collection("week0").document("FirstScore");
                     docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
@@ -327,7 +314,7 @@ public class MusicTest extends AppCompatActivity {
                         }
                     });
 //                    getAllDocs();
-//切歌
+                    //切歌
                     Log.i("INFO", "onClick: 切歌按鈕被點擊!");
                     playBtn.setImageResource(R.drawable.pause); //切換成暫停鍵
                     currentPlaying = ++currentPlaying % playList.size();
@@ -342,6 +329,7 @@ public class MusicTest extends AppCompatActivity {
                     //有bug了
             }
         }
+
     }
 
     private class  onSeekBarChangeControl implements SeekBar.OnSeekBarChangeListener {
