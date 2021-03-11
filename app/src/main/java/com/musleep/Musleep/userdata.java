@@ -1,23 +1,16 @@
-package com.example.Musleep;
+package com.musleep.Musleep;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -107,7 +100,7 @@ public class userdata extends AppCompatActivity {
                                         .document("FirstScore")
                                         .set(week0);
                                 Toast.makeText(userdata.this,"Successfull",Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), MusicTest.class));
+                                startActivity(new Intent(getApplicationContext(), init_time.class));
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
