@@ -50,9 +50,9 @@
                     android:layout_width="200dp"
                     android:layout_height="80dp"
                     android:alpha="0"
-                    android:background="#50FFFFFF"
+                    android:background="@color/green"
                     android:gravity="center"
-                    android:text="Back_card"
+                    android:text=""
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:textSize="25sp"
@@ -65,7 +65,7 @@
                 android:id="@+id/flip1"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="flip"
+                android:text="就寢"
                 tools:ignore="MissingConstraints" />
         </LinearLayout>
 
@@ -398,7 +398,7 @@
                 android:alpha="0"
                 android:background="#50FFFFFF"
                 android:gravity="center"
-                android:text="Back_card"
+                android:text=""
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textSize="25sp"
