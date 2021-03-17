@@ -21,15 +21,19 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.firestore.Source;
 
 import org.w3c.dom.Text;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class alarm extends AppCompatActivity {
     FirebaseFirestore db;
@@ -41,7 +45,7 @@ public class alarm extends AppCompatActivity {
     AnimatorSet back_anim;
     Button flip1,flip2,flip3,flip4,flip5,flip6,flip7;
     private Object alarm;
-    int MWHour,MWMin,MSHour,MSMin;
+    int MWHour,MWMin,MSHour,MSMin,TWHour,TWMin,TSHour,TSMin,WWHour,WWMin,WSHour,WSMin,ThWHour,ThWMin,ThSHour,ThSMin,FWHour,FWMin,FSHour,FSMin,SWHour,SWMin,SSHour,SSMin,SuWHour,SuWMin,SuSHour,SuSMin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,13 @@ public class alarm extends AppCompatActivity {
         SuWake = findViewById(R.id.SuWake);
         SuSleep = findViewById(R.id.SuSleep);
 
+        //firebase time reference
+        db = FirebaseFirestore.getInstance();
+        FirebaseUser mAuth = FirebaseAuth.getInstance().getCurrentUser();
+        CollectionReference col =db.collection("User")
+                .document(mAuth.getUid())
+                .collection("time");
+
         //timer
         //Monday
         MWake.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +88,12 @@ public class alarm extends AppCompatActivity {
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(0,0,0,MWHour,MWMin);
                                 MWake.setText(DateFormat.format("hh:mm aa",calendar));
+                                //set firebase
+                                Map<String, Object> time = new HashMap<>();
+                                time.put("wakeHour", String.format("%02d",MWHour));
+                                time.put("wakeMin", String.format("%02d",MWMin));
+                                col.document("Monday")
+                                        .set(time, SetOptions.merge());
                             }
                         },12,0,false
                 );
@@ -86,24 +103,278 @@ public class alarm extends AppCompatActivity {
         });
         MSleep.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v1) {
-                TimePickerDialog timePickerDialog1 = new TimePickerDialog(
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
                         alarm.this,
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
-                            public void onTimeSet(TimePicker view1, int hourOfDay1, int minute1) {
-                                MSHour = hourOfDay1;
-                                MSMin = minute1;
-                                Calendar calendar1 = Calendar.getInstance();
-                                calendar1.set(0,0,0,MSHour,MSMin);
-                                MSleep.setText(DateFormat.format("hh:mm aa",calendar1));
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                MSHour = hourOfDay;
+                                MSMin = minute;
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(0,0,0,MSHour,MSMin);
+                                MSleep.setText(DateFormat.format("hh:mm aa",calendar));
                             }
                         },12,0,false
                 );
-                timePickerDialog1.updateTime(MSHour,MSMin);
-                timePickerDialog1.show();
+                timePickerDialog.updateTime(MSHour,MSMin);
+                timePickerDialog.show();
             }
         });
+
+        //Tuesday
+        TWake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        alarm.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                TWHour = hourOfDay;
+                                TWMin = minute;
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(0,0,0,TWHour,TWMin);
+                                TWake.setText(DateFormat.format("hh:mm aa",calendar));
+                            }
+                        },12,0,false
+                );
+                timePickerDialog.updateTime(TWHour,TWMin);
+                timePickerDialog.show();
+            }
+        });
+        TSleep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        alarm.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                TSHour = hourOfDay;
+                                TSMin = minute;
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(0,0,0,TSHour,TSMin);
+                                TSleep.setText(DateFormat.format("hh:mm aa",calendar));
+                            }
+                        },12,0,false
+                );
+                timePickerDialog.updateTime(TSHour,TSMin);
+                timePickerDialog.show();
+            }
+        });
+
+        //Wednesday
+        WWake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        alarm.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                WWHour = hourOfDay;
+                                WWMin = minute;
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(0,0,0,WWHour,WWMin);
+                                WWake.setText(DateFormat.format("hh:mm aa",calendar));
+                            }
+                        },12,0,false
+                );
+                timePickerDialog.updateTime(WWHour,WWMin);
+                timePickerDialog.show();
+            }
+        });
+        WSleep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        alarm.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                WSHour = hourOfDay;
+                                WSMin = minute;
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(0,0,0,WSHour,WSMin);
+                                WSleep.setText(DateFormat.format("hh:mm aa",calendar));
+                            }
+                        },12,0,false
+                );
+                timePickerDialog.updateTime(WSHour,WSMin);
+                timePickerDialog.show();
+            }
+        });
+
+        //Thursday
+        ThWake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        alarm.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                ThWHour = hourOfDay;
+                                ThWMin = minute;
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(0,0,0,ThWHour,ThWMin);
+                                ThWake.setText(DateFormat.format("hh:mm aa",calendar));
+                            }
+                        },12,0,false
+                );
+                timePickerDialog.updateTime(ThWHour,ThWMin);
+                timePickerDialog.show();
+            }
+        });
+        ThSleep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        alarm.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                ThSHour = hourOfDay;
+                                ThSMin = minute;
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(0,0,0,ThSHour,ThSMin);
+                                ThSleep.setText(DateFormat.format("hh:mm aa",calendar));
+                            }
+                        },12,0,false
+                );
+                timePickerDialog.updateTime(ThSHour,ThSMin);
+                timePickerDialog.show();
+            }
+        });
+
+        //Friday
+        FWake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        alarm.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                FWHour = hourOfDay;
+                                FWMin = minute;
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(0,0,0,FWHour,FWMin);
+                                FWake.setText(DateFormat.format("hh:mm aa",calendar));
+                            }
+                        },12,0,false
+                );
+                timePickerDialog.updateTime(FWHour,FWMin);
+                timePickerDialog.show();
+            }
+        });
+        FSleep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        alarm.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                FSHour = hourOfDay;
+                                FSMin = minute;
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(0,0,0,FSHour,FSMin);
+                                FSleep.setText(DateFormat.format("hh:mm aa",calendar));
+                            }
+                        },12,0,false
+                );
+                timePickerDialog.updateTime(FSHour,FSMin);
+                timePickerDialog.show();
+            }
+        });
+
+
+        //Saturday
+        SWake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        alarm.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                SWHour = hourOfDay;
+                                SWMin = minute;
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(0,0,0,SWHour,SWMin);
+                                SWake.setText(DateFormat.format("hh:mm aa",calendar));
+                            }
+                        },12,0,false
+                );
+                timePickerDialog.updateTime(SWHour,SWMin);
+                timePickerDialog.show();
+            }
+        });
+        SSleep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        alarm.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                SSHour = hourOfDay;
+                                SSMin = minute;
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(0,0,0,SSHour,SSMin);
+                                SSleep.setText(DateFormat.format("hh:mm aa",calendar));
+                            }
+                        },12,0,false
+                );
+                timePickerDialog.updateTime(SSHour,SSMin);
+                timePickerDialog.show();
+            }
+        });
+
+        //Saturday
+        SuWake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        alarm.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                SuWHour = hourOfDay;
+                                SuWMin = minute;
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(0,0,0,SuWHour,SuWMin);
+                                SuWake.setText(DateFormat.format("hh:mm aa",calendar));
+                            }
+                        },12,0,false
+                );
+                timePickerDialog.updateTime(SuWHour,SuWMin);
+                timePickerDialog.show();
+            }
+        });
+        SuSleep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        alarm.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                SuSHour = hourOfDay;
+                                SuSMin = minute;
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(0,0,0,SuSHour,SuSMin);
+                                SuSleep.setText(DateFormat.format("hh:mm aa",calendar));
+                            }
+                        },12,0,false
+                );
+                timePickerDialog.updateTime(SuSHour,SuSMin);
+                timePickerDialog.show();
+            }
+        });
+
 
         //card animate
         //MondayFlip
@@ -125,7 +396,7 @@ public class alarm extends AppCompatActivity {
                     front_anim.start();
                     back_anim.start();
                     isFront = Boolean.FALSE;
-                    flip1.setText("點我設定起床");
+                    flip1.setText("就寢時間");
                 }else{
                     MWake.setClickable(true);
                     front_anim.setTarget(MSleep);
@@ -133,7 +404,7 @@ public class alarm extends AppCompatActivity {
                     back_anim.start();
                     front_anim.start();
                     isFront = Boolean.TRUE;
-                    flip1.setText("點我設定就寢");
+                    flip1.setText("起床時間");
 
                 }
             }
@@ -152,17 +423,22 @@ public class alarm extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 if(isFront){
+                    TWake.setClickable(false);
                     front_anim.setTarget(TWake);
                     back_anim.setTarget(TSleep);
                     front_anim.start();
                     back_anim.start();
                     isFront = Boolean.FALSE;
+                    flip2.setText("就寢時間");
                 }else{
+                    TWake.setClickable(true);
                     front_anim.setTarget(TSleep);
                     back_anim.setTarget(TWake);
                     back_anim.start();
                     front_anim.start();
                     isFront = Boolean.TRUE;
+                    flip2.setText("起床時間");
+
                 }
             }
         });
@@ -180,17 +456,22 @@ public class alarm extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 if(isFront){
+                    WWake.setClickable(false);
                     front_anim.setTarget(WWake);
                     back_anim.setTarget(WSleep);
                     front_anim.start();
                     back_anim.start();
                     isFront = Boolean.FALSE;
+                    flip3.setText("就寢時間");
                 }else{
+                    WWake.setClickable(true);
                     front_anim.setTarget(WSleep);
                     back_anim.setTarget(WWake);
                     back_anim.start();
                     front_anim.start();
                     isFront = Boolean.TRUE;
+                    flip3.setText("起床時間");
+
                 }
             }
         });
@@ -208,17 +489,22 @@ public class alarm extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 if(isFront){
+                    ThWake.setClickable(false);
                     front_anim.setTarget(ThWake);
                     back_anim.setTarget(ThSleep);
                     front_anim.start();
                     back_anim.start();
                     isFront = Boolean.FALSE;
+                    flip4.setText("就寢時間");
                 }else{
+                    ThWake.setClickable(true);
                     front_anim.setTarget(ThSleep);
                     back_anim.setTarget(ThWake);
                     back_anim.start();
                     front_anim.start();
                     isFront = Boolean.TRUE;
+                    flip4.setText("起床時間");
+
                 }
             }
         });
@@ -236,17 +522,22 @@ public class alarm extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 if(isFront){
+                    FWake.setClickable(false);
                     front_anim.setTarget(FWake);
                     back_anim.setTarget(FSleep);
                     front_anim.start();
                     back_anim.start();
                     isFront = Boolean.FALSE;
+                    flip5.setText("就寢時間");
                 }else{
+                    FWake.setClickable(true);
                     front_anim.setTarget(FSleep);
                     back_anim.setTarget(FWake);
                     back_anim.start();
                     front_anim.start();
                     isFront = Boolean.TRUE;
+                    flip5.setText("起床時間");
+
                 }
             }
         });
@@ -264,17 +555,22 @@ public class alarm extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 if(isFront){
+                    SWake.setClickable(false);
                     front_anim.setTarget(SWake);
                     back_anim.setTarget(SSleep);
                     front_anim.start();
                     back_anim.start();
                     isFront = Boolean.FALSE;
+                    flip6.setText("就寢時間");
                 }else{
+                    SWake.setClickable(true);
                     front_anim.setTarget(SSleep);
                     back_anim.setTarget(SWake);
                     back_anim.start();
                     front_anim.start();
                     isFront = Boolean.TRUE;
+                    flip6.setText("起床時間");
+
                 }
             }
         });
@@ -292,24 +588,27 @@ public class alarm extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 if(isFront){
+                    SuWake.setClickable(false);
                     front_anim.setTarget(SuWake);
                     back_anim.setTarget(SuSleep);
                     front_anim.start();
                     back_anim.start();
                     isFront = Boolean.FALSE;
+                    flip7.setText("就寢時間");
                 }else{
+                    SuWake.setClickable(true);
                     front_anim.setTarget(SuSleep);
                     back_anim.setTarget(SuWake);
                     back_anim.start();
                     front_anim.start();
                     isFront = Boolean.TRUE;
+                    flip7.setText("起床時間");
+
                 }
             }
         });
 
         //Firebase抓時間
-        db = FirebaseFirestore.getInstance();
-        FirebaseUser mAuth = FirebaseAuth.getInstance().getCurrentUser();
         DocumentReference docRef = db.collection("User")
                 .document("jyqYBzD67eOCMCQY2j52b5aKcaH2")
                 .collection("time")

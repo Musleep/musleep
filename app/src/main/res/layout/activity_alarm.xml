@@ -50,23 +50,20 @@
                     android:id="@+id/MWake"
                     android:layout_width="200dp"
                     android:layout_height="80dp"
-
                     android:background="@color/green"
                     android:gravity="center"
                     android:text="起床時間"
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:textSize="25sp"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="4dp" />
+                    tools:ignore="MissingConstraints" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <Button
                 android:id="@+id/flip1"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="點我設定就寢"
+                android:text="起床時間"
                 tools:ignore="MissingConstraints" />
         </LinearLayout>
 
@@ -90,6 +87,19 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/TSleep"
+                    android:layout_width="200dp"
+                    android:layout_height="80dp"
+                    android:alpha="0"
+                    android:background="#50FFFFFF"
+                    android:gravity="center"
+                    android:text="Back_card"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:ignore="MissingConstraints"/>
+
+                <TextView
                     android:id="@+id/TWake"
                     android:layout_width="200dp"
                     android:layout_height="80dp"
@@ -101,21 +111,6 @@
                     android:textSize="25sp"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints"></TextView>
-
-                <TextView
-                    android:id="@+id/TSleep"
-                    android:layout_width="200dp"
-                    android:layout_height="80dp"
-                    android:alpha="0"
-                    android:background="#50FFFFFF"
-                    android:gravity="center"
-                    android:text="Back_card"
-                    android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="4dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <Button
@@ -147,6 +142,19 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/WSleep"
+                    android:layout_width="200dp"
+                    android:layout_height="80dp"
+                    android:alpha="0"
+                    android:background="#50FFFFFF"
+                    android:gravity="center"
+                    android:text="Back_card"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:ignore="MissingConstraints"/>
+
+                <TextView
                     android:id="@+id/WWake"
                     android:layout_width="200dp"
                     android:layout_height="80dp"
@@ -158,21 +166,6 @@
                     android:textSize="25sp"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints"></TextView>
-
-                <TextView
-                    android:id="@+id/WSleep"
-                    android:layout_width="200dp"
-                    android:layout_height="80dp"
-                    android:alpha="0"
-                    android:background="#50FFFFFF"
-                    android:gravity="center"
-                    android:text="Back_card"
-                    android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="4dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <Button
@@ -210,6 +203,19 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/ThSleep"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:alpha="0"
+                android:background="#50FFFFFF"
+                android:gravity="center"
+                android:text="Back_card"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
                 android:id="@+id/ThWake"
                 android:layout_width="200dp"
                 android:layout_height="80dp"
@@ -221,21 +227,6 @@
                 android:textSize="25sp"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints"></TextView>
-
-            <TextView
-                android:id="@+id/ThSleep"
-                android:layout_width="200dp"
-                android:layout_height="80dp"
-                android:alpha="0"
-                android:background="#50FFFFFF"
-                android:gravity="center"
-                android:text="Back_card"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="4dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <Button
@@ -267,6 +258,19 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/FSleep"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:alpha="0"
+                android:background="#50FFFFFF"
+                android:gravity="center"
+                android:text="Back_card"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
                 android:id="@+id/FWake"
                 android:layout_width="200dp"
                 android:layout_height="80dp"
@@ -278,21 +282,6 @@
                 android:textSize="25sp"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints"></TextView>
-
-            <TextView
-                android:id="@+id/FSleep"
-                android:layout_width="200dp"
-                android:layout_height="80dp"
-                android:alpha="0"
-                android:background="#50FFFFFF"
-                android:gravity="center"
-                android:text="Back_card"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="4dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <Button
@@ -324,6 +313,19 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/SSleep"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:alpha="0"
+                android:background="#50FFFFFF"
+                android:gravity="center"
+                android:text="Back_card"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
                 android:id="@+id/SWake"
                 android:layout_width="200dp"
                 android:layout_height="80dp"
@@ -335,21 +337,6 @@
                 android:textSize="25sp"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints"></TextView>
-
-            <TextView
-                android:id="@+id/SSleep"
-                android:layout_width="200dp"
-                android:layout_height="80dp"
-                android:alpha="0"
-                android:background="#50FFFFFF"
-                android:gravity="center"
-                android:text="Back_card"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="4dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <Button
@@ -380,6 +367,19 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/SuSleep"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:alpha="0"
+                android:background="#50FFFFFF"
+                android:gravity="center"
+                android:text=""
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
                 android:id="@+id/SuWake"
                 android:layout_width="200dp"
                 android:layout_height="80dp"
@@ -391,21 +391,6 @@
                 android:textSize="25sp"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints"></TextView>
-
-            <TextView
-                android:id="@+id/SuSleep"
-                android:layout_width="200dp"
-                android:layout_height="80dp"
-                android:alpha="0"
-                android:background="#50FFFFFF"
-                android:gravity="center"
-                android:text=""
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="4dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <Button
