@@ -4,9 +4,6 @@
     package="com.musleep.Musleep">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <uses-feature android:name="android.hardware.type.watch" />
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -16,40 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-
-        <activity android:name="com.musleep.Musleep.Login"/>
-
-
-        <activity android:name="com.musleep.Musleep.Registration" />
-
-        <activity android:name="com.musleep.Musleep.MainActivity" />
-
-        <activity android:name="com.musleep.Musleep.MusicTest" />
-
-        <activity android:name="com.musleep.Musleep.Loading"/>
-
-
-
-
-<!--        <activity-->
-<!--            android:name="com.musleep.Musleep.init_time"-->
-<!--            android:label="@string/title_activity_init_time">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
-
-
-
-        <activity android:name="com.musleep.Musleep.userdata" />
-
-        <activity android:name="com.musleep.Musleep.sleep_diary" />
-
-        <activity android:name="com.musleep.Musleep.sleep_record" />
-
-        <activity android:name="com.musleep.Musleep.homescreen" >
+        <activity android:name=".Loading">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,7 +21,30 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.musleep.Musleep.dairy_survey" />
+
+
+        <activity android:name=".alarm">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <receiver android:name=".wakeup"
+            android:enabled="true"
+            android:exported="true" />
+
+
+        <activity android:name=".init_time"/>
+        <activity android:name=".Login" />
+        <activity android:name=".Registration" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".MusicTest" />
+        <activity android:name=".userdata" />
+        <activity android:name=".sleep_diary" />
+        <activity android:name=".sleep_record" />
+        <activity android:name=".homescreen" />
+        <activity android:name=".dairy_survey" />
 
         <meta-data
             android:name="com.google.android.gms.version"

@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/background"
+    tools:context=".alarm">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:textAlignment="center"
+            android:layout_marginRight="40dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="MONDAY"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:background="#50B22222" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/MWake"
+                    android:layout_width="200dp"
+                    android:layout_height="80dp"
+                    android:background="#30FFFFFF"
+                    android:gravity="center"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints"></TextView>
+
+                <TextView
+                    android:id="@+id/MSleep"
+                    android:layout_width="200dp"
+                    android:layout_height="80dp"
+                    android:alpha="0"
+                    android:background="#50FFFFFF"
+                    android:gravity="center"
+                    android:text="Back_card"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="4dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/flip1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="flip"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:textAlignment="center">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="TUESDAY"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:background= "#50FF6347"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/TWake"
+                    android:layout_width="200dp"
+                    android:layout_height="80dp"
+                    android:background="#30FFFFFF"
+                    android:gravity="center"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints"></TextView>
+
+                <TextView
+                    android:id="@+id/TSleep"
+                    android:layout_width="200dp"
+                    android:layout_height="80dp"
+                    android:alpha="0"
+                    android:background="#50FFFFFF"
+                    android:gravity="center"
+                    android:text="Back_card"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="4dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/flip2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="flip"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:textAlignment="center"
+            android:layout_marginLeft="40dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="WEDNESDAY"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:background="#50FFE384" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/WWake"
+                    android:layout_width="200dp"
+                    android:layout_height="80dp"
+                    android:background="#30FFFFFF"
+                    android:gravity="center"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints"></TextView>
+
+                <TextView
+                    android:id="@+id/WSleep"
+                    android:layout_width="200dp"
+                    android:layout_height="80dp"
+                    android:alpha="0"
+                    android:background="#50FFFFFF"
+                    android:gravity="center"
+                    android:text="Back_card"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="4dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/flip3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="flip"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="50dp">
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:textAlignment="center"
+        android:layout_marginRight="30dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="THURSDAY"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:background="#5000C78C" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/ThWake"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:background="#30FFFFFF"
+                android:gravity="center"
+                android:text=""
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints"></TextView>
+
+            <TextView
+                android:id="@+id/ThSleep"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:alpha="0"
+                android:background="#50FFFFFF"
+                android:gravity="center"
+                android:text="Back_card"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="4dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/flip4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="flip"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:textAlignment="center"
+        android:layout_marginRight="15dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="FRIDAY"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:background="#5033A1C9" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/FWake"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:background="#30FFFFFF"
+                android:gravity="center"
+                android:text=""
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints"></TextView>
+
+            <TextView
+                android:id="@+id/FSleep"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:alpha="0"
+                android:background="#50FFFFFF"
+                android:gravity="center"
+                android:text="Back_card"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="4dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/flip5"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="flip"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:textAlignment="center"
+        android:layout_marginLeft="15dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="SATURDAY"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:background="#500000AA" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/SWake"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:background="#30FFFFFF"
+                android:gravity="center"
+                android:text=""
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints"></TextView>
+
+            <TextView
+                android:id="@+id/SSleep"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:alpha="0"
+                android:background="#50FFFFFF"
+                android:gravity="center"
+                android:text="Back_card"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="4dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/flip6"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="flip"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:textAlignment="center"
+        android:layout_marginLeft="30dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="SUNDAY"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:background="#508A2BE2" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/SuWake"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:background="#30FFFFFF"
+                android:gravity="center"
+                android:text=""
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints"></TextView>
+
+            <TextView
+                android:id="@+id/SuSleep"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:alpha="0"
+                android:background="#50FFFFFF"
+                android:gravity="center"
+                android:text="Back_card"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="4dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/flip7"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="flip"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+</LinearLayout>
+
+
+
+</LinearLayout>
