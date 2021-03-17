@@ -76,7 +76,7 @@ public class alarm extends AppCompatActivity {
                                 MWMin = minute;
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(0,0,0,MWHour,MWMin);
-                                MSleep.setText(DateFormat.format("hh:mm aa",calendar));
+                                MWake.setText(DateFormat.format("hh:mm aa",calendar));
                             }
                         },12,0,false
                 );
@@ -96,7 +96,7 @@ public class alarm extends AppCompatActivity {
                                 MSMin = minute1;
                                 Calendar calendar1 = Calendar.getInstance();
                                 calendar1.set(0,0,0,MSHour,MSMin);
-                                MWake.setText(DateFormat.format("hh:mm aa",calendar1));
+                                MSleep.setText(DateFormat.format("hh:mm aa",calendar1));
                             }
                         },12,0,false
                 );
@@ -119,20 +119,21 @@ public class alarm extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 if(isFront){
-                    MSleep.setClickable(false);
+                    MWake.setClickable(false);
                     front_anim.setTarget(MWake);
                     back_anim.setTarget(MSleep);
                     front_anim.start();
                     back_anim.start();
                     isFront = Boolean.FALSE;
-                    flip1.setText("鬧鐘");
+                    flip1.setText("點我設定起床");
                 }else{
+                    MWake.setClickable(true);
                     front_anim.setTarget(MSleep);
                     back_anim.setTarget(MWake);
                     back_anim.start();
                     front_anim.start();
                     isFront = Boolean.TRUE;
-                    flip1.setText("");
+                    flip1.setText("點我設定就寢");
 
                 }
             }
