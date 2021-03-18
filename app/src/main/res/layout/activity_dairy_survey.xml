@@ -6,24 +6,20 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".dairy_survey">
+    tools:context=".dairy_survey"
+    android:gravity="center">
+    <LinearLayout
+        android:layout_width="1100dp"
+        android:layout_height="450dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:background="#B3F0E5DE"
+        android:elevation="20dp"
+        android:orientation="vertical"
+        android:gravity="center">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center_horizontal">
-        <TextClock
-            android:id="@+id/today"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:format12Hour="yyyy/MM/dd"
-            android:textColor="#968C8C"
-            android:textSize="30dp"
-            android:textStyle="bold"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:gravity="center_horizontal">
 
 
@@ -62,7 +58,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:gravity="center_horizontal">
 
 
@@ -101,7 +97,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:gravity="center_horizontal">
 
 
@@ -139,7 +135,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:gravity="center_horizontal">
 
 
@@ -177,7 +173,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:gravity="center_horizontal">
 
 
@@ -215,7 +211,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:gravity="center_horizontal">
 
 
@@ -250,5 +246,6 @@
                 android:textSize="30dp" />
         </RadioGroup>
 
+    </LinearLayout>
     </LinearLayout>
 </LinearLayout>
