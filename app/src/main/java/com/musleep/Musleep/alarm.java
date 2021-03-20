@@ -1,5 +1,6 @@
 package com.musleep.Musleep;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.AnimatorInflater;
@@ -18,13 +19,16 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.firestore.Source;
 
@@ -32,6 +36,7 @@ import org.w3c.dom.Text;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,7 +50,35 @@ public class alarm extends AppCompatActivity {
     AnimatorSet back_anim;
     Button flip1,flip2,flip3,flip4,flip5,flip6,flip7;
     private Object alarm;
-    int MWHour,MWMin,MSHour,MSMin,TWHour,TWMin,TSHour,TSMin,WWHour,WWMin,WSHour,WSMin,ThWHour,ThWMin,ThSHour,ThSMin,FWHour,FWMin,FSHour,FSMin,SWHour,SWMin,SSHour,SSMin,SuWHour,SuWMin,SuSHour,SuSMin;
+    String week1;
+    int MWHour;
+    int MWMin;
+    int MSHour;
+    int MSMin;
+    int TWHour;
+    int TWMin;
+    int TSHour;
+    int TSMin;
+    int WWHour;
+    int WWMin;
+    int WSHour;
+    int WSMin;
+    int ThWHour;
+    int ThWMin;
+    int ThSHour;
+    int ThSMin;
+    int FWHour;
+    int FWMin;
+    int FSHour;
+    int FSMin;
+    int SWHour;
+    int SWMin;
+    int SSHour;
+    int SSMin;
+    int SuWHour;
+    int SuWMin;
+    int SuSHour;
+    int SuSMin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +99,144 @@ public class alarm extends AppCompatActivity {
         SuWake = findViewById(R.id.SuWake);
         SuSleep = findViewById(R.id.SuSleep);
 
+        Log.i("week", String.valueOf(week1));
         //firebase time reference
         db = FirebaseFirestore.getInstance();
         FirebaseUser mAuth = FirebaseAuth.getInstance().getCurrentUser();
         CollectionReference col =db.collection("User")
                 .document(mAuth.getUid())
                 .collection("time");
+        //判斷星期設置鬧鐘
+        Calendar today = new GregorianCalendar();
+        int week = today.get(today.DAY_OF_WEEK);
+        if (week == 2){
+            week1 = "Monday";
+        }
+        if (week == 3){
+            week1 = "Tuesday";
+        }
+        if (week == 4){
+            week1 = "Wednesday";
+        }
+        if (week == 5){
+            week1 = "Thursday";
+        }
+        if (week == 6){
+            week1 = "Friday";
+        }
+        if (week == 7){
+            week1 = "Saturday";
+        }
+        if (week == 1){
+            week1 = "Sunday";
+        }
+        Log.i("TAG", String.valueOf(week1));
+        //Firebase抓時間
+        DocumentReference docRef = db.collection("User")
+                .document(mAuth.getUid())
+                .collection("time")
+                .document(week1);
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.i("TAG", documentSnapshot.getString("wakeHour")+":"+documentSnapshot.getString("wakeMin"));
+                Calendar cal = Calendar.getInstance();
+                hour = documentSnapshot.getString("wakeHour");
+                minute = documentSnapshot.getString("wakeMin");
+                cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hour));
+                cal.set(Calendar.MINUTE, Integer.parseInt(minute));
+                cal.set(Calendar.SECOND, 0);
+                cal.set(Calendar.MILLISECOND, 0);
+                setAlarm(cal.getTimeInMillis());
+//                MWake.setText(documentSnapshot.getString("wakeHour")+":"+documentSnapshot.getString("wakeMin"));
+            }
+
+        });
+        //抓值顯示
+
+
+         DocumentReference Mon = col.document("Monday");
+         Mon.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+             @Override
+             public void onSuccess(DocumentSnapshot documentSnapshot) {
+                 MWake.setText(documentSnapshot.getString("wakeHour") + ":" + documentSnapshot.getString("wakeMin"));
+                 MSleep.setText(documentSnapshot.getString("sleepHour") + ":" + documentSnapshot.getString("sleepMin"));
+             }
+         });
+
+        DocumentReference Tue = col.document("Tuesday");
+        Tue.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                TWake.setText(documentSnapshot.getString("wakeHour") + ":" + documentSnapshot.getString("wakeMin"));
+                TSleep.setText(documentSnapshot.getString("sleepHour") + ":" + documentSnapshot.getString("sleepMin"));
+            }
+        });
+        DocumentReference Wed = col.document("Wednesday");
+        Wed.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                WWake.setText(documentSnapshot.getString("wakeHour") + ":" + documentSnapshot.getString("wakeMin"));
+                WSleep.setText(documentSnapshot.getString("sleepHour") + ":" + documentSnapshot.getString("sleepMin"));
+            }
+        });
+        DocumentReference Thu = col.document("Thursday");
+        Thu.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                ThWake.setText(documentSnapshot.getString("wakeHour") + ":" + documentSnapshot.getString("wakeMin"));
+                ThSleep.setText(documentSnapshot.getString("sleepHour") + ":" + documentSnapshot.getString("sleepMin"));
+            }
+        });
+        DocumentReference Fri = col.document("Friday");
+        Fri.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                FWake.setText(documentSnapshot.getString("wakeHour") + ":" + documentSnapshot.getString("wakeMin"));
+                FSleep.setText(documentSnapshot.getString("sleepHour") + ":" + documentSnapshot.getString("sleepMin"));
+            }
+        });
+        DocumentReference Sat = col.document("Saturday");
+        Sat.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                SWake.setText(documentSnapshot.getString("wakeHour") + ":" + documentSnapshot.getString("wakeMin"));
+                SSleep.setText(documentSnapshot.getString("sleepHour") + ":" + documentSnapshot.getString("sleepMin"));
+            }
+        });
+        DocumentReference Sun = col.document("Sunday");
+        Sun.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                SuWake.setText(documentSnapshot.getString("wakeHour") + ":" + documentSnapshot.getString("wakeMin"));
+                SuSleep.setText(documentSnapshot.getString("sleepHour") + ":" + documentSnapshot.getString("sleepMin"));
+            }
+        });
+//         String[] weekly = {"Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday", "Sunday"};
+//         for (int i =0; i <= 6; i++){
+//           Log.i("weekly", weekly[i]);
+//            DocumentReference docdoc = db.collection("User")
+//                    .document(mAuth.getUid())
+//                    .collection("time")
+//                    .document(weekly[i]);
+//            docdoc.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                @Override
+//                public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                    Log.i("TAG", documentSnapshot.getString("wakeHour")+":"+documentSnapshot.getString("wakeMin"));
+//                    if(weekly[0]=="Monday"){
+//                        MWake.setText(documentSnapshot.getString("wakeHour")+":"+documentSnapshot.getString("wakeMin"));
+//                        MSleep.setText(documentSnapshot.getString("sleepHour")+":"+documentSnapshot.getString("sleepMin"));
+//                    }
+//                    if(weekly[1]=="Tuesday"){
+//                        TWake.setText(documentSnapshot.getString("wakeHour")+":"+documentSnapshot.getString("wakeMin"));
+//                        TSleep.setText(documentSnapshot.getString("sleepHour")+":"+documentSnapshot.getString("sleepMin"));
+//                    }
+//
+//                }
+//
+//            });
+//
+//        }
 
         //timer
         //Monday
@@ -114,6 +279,12 @@ public class alarm extends AppCompatActivity {
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(0,0,0,MSHour,MSMin);
                                 MSleep.setText(DateFormat.format("hh:mm aa",calendar));
+                                //set firebase
+                                Map<String, Object> time = new HashMap<>();
+                                time.put("wakeHour", String.format("%02d",MSHour));
+                                time.put("wakeMin", String.format("%02d",MSMin));
+                                col.document("Monday")
+                                        .set(time, SetOptions.merge());
                             }
                         },12,0,false
                 );
@@ -136,6 +307,12 @@ public class alarm extends AppCompatActivity {
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(0,0,0,TWHour,TWMin);
                                 TWake.setText(DateFormat.format("hh:mm aa",calendar));
+                                //set firebase
+                                Map<String, Object> time = new HashMap<>();
+                                time.put("wakeHour", String.format("%02d",TWHour));
+                                time.put("wakeMin", String.format("%02d",TWMin));
+                                col.document("Tuesday")
+                                        .set(time, SetOptions.merge());
                             }
                         },12,0,false
                 );
@@ -156,6 +333,12 @@ public class alarm extends AppCompatActivity {
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(0,0,0,TSHour,TSMin);
                                 TSleep.setText(DateFormat.format("hh:mm aa",calendar));
+                                //set firebase
+                                Map<String, Object> time = new HashMap<>();
+                                time.put("wakeHour", String.format("%02d",TSHour));
+                                time.put("wakeMin", String.format("%02d",TSMin));
+                                col.document("Tuesday")
+                                        .set(time, SetOptions.merge());
                             }
                         },12,0,false
                 );
@@ -178,6 +361,12 @@ public class alarm extends AppCompatActivity {
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(0,0,0,WWHour,WWMin);
                                 WWake.setText(DateFormat.format("hh:mm aa",calendar));
+                                //set firebase
+                                Map<String, Object> time = new HashMap<>();
+                                time.put("wakeHour", String.format("%02d",WWHour));
+                                time.put("wakeMin", String.format("%02d",WWMin));
+                                col.document("Wednesday")
+                                        .set(time, SetOptions.merge());
                             }
                         },12,0,false
                 );
@@ -198,6 +387,12 @@ public class alarm extends AppCompatActivity {
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(0,0,0,WSHour,WSMin);
                                 WSleep.setText(DateFormat.format("hh:mm aa",calendar));
+                                //set firebase
+                                Map<String, Object> time = new HashMap<>();
+                                time.put("wakeHour", String.format("%02d",WSHour));
+                                time.put("wakeMin", String.format("%02d",WSMin));
+                                col.document("Wednesday")
+                                        .set(time, SetOptions.merge());
                             }
                         },12,0,false
                 );
@@ -220,6 +415,12 @@ public class alarm extends AppCompatActivity {
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(0,0,0,ThWHour,ThWMin);
                                 ThWake.setText(DateFormat.format("hh:mm aa",calendar));
+                                //set firebase
+                                Map<String, Object> time = new HashMap<>();
+                                time.put("wakeHour", String.format("%02d",ThWHour));
+                                time.put("wakeMin", String.format("%02d",ThWMin));
+                                col.document("Thursday")
+                                        .set(time, SetOptions.merge());
                             }
                         },12,0,false
                 );
@@ -240,6 +441,12 @@ public class alarm extends AppCompatActivity {
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(0,0,0,ThSHour,ThSMin);
                                 ThSleep.setText(DateFormat.format("hh:mm aa",calendar));
+                                //set firebase
+                                Map<String, Object> time = new HashMap<>();
+                                time.put("wakeHour", String.format("%02d",ThSHour));
+                                time.put("wakeMin", String.format("%02d",ThSMin));
+                                col.document("Thursday")
+                                        .set(time, SetOptions.merge());
                             }
                         },12,0,false
                 );
@@ -262,6 +469,12 @@ public class alarm extends AppCompatActivity {
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(0,0,0,FWHour,FWMin);
                                 FWake.setText(DateFormat.format("hh:mm aa",calendar));
+                                //set firebase
+                                Map<String, Object> time = new HashMap<>();
+                                time.put("wakeHour", String.format("%02d",FWHour));
+                                time.put("wakeMin", String.format("%02d",FWMin));
+                                col.document("Friday")
+                                        .set(time, SetOptions.merge());
                             }
                         },12,0,false
                 );
@@ -282,6 +495,12 @@ public class alarm extends AppCompatActivity {
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(0,0,0,FSHour,FSMin);
                                 FSleep.setText(DateFormat.format("hh:mm aa",calendar));
+                                //set firebase
+                                Map<String, Object> time = new HashMap<>();
+                                time.put("wakeHour", String.format("%02d",FSHour));
+                                time.put("wakeMin", String.format("%02d",FSMin));
+                                col.document("Friday")
+                                        .set(time, SetOptions.merge());
                             }
                         },12,0,false
                 );
@@ -305,6 +524,12 @@ public class alarm extends AppCompatActivity {
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(0,0,0,SWHour,SWMin);
                                 SWake.setText(DateFormat.format("hh:mm aa",calendar));
+                                //set firebase
+                                Map<String, Object> time = new HashMap<>();
+                                time.put("wakeHour", String.format("%02d",SWHour));
+                                time.put("wakeMin", String.format("%02d",SWMin));
+                                col.document("Saturday")
+                                        .set(time, SetOptions.merge());
                             }
                         },12,0,false
                 );
@@ -325,6 +550,12 @@ public class alarm extends AppCompatActivity {
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(0,0,0,SSHour,SSMin);
                                 SSleep.setText(DateFormat.format("hh:mm aa",calendar));
+                                //set firebase
+                                Map<String, Object> time = new HashMap<>();
+                                time.put("wakeHour", String.format("%02d",SSHour));
+                                time.put("wakeMin", String.format("%02d",SSMin));
+                                col.document("Saturday")
+                                        .set(time, SetOptions.merge());
                             }
                         },12,0,false
                 );
@@ -333,7 +564,7 @@ public class alarm extends AppCompatActivity {
             }
         });
 
-        //Saturday
+        //Sunday
         SuWake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -347,6 +578,12 @@ public class alarm extends AppCompatActivity {
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(0,0,0,SuWHour,SuWMin);
                                 SuWake.setText(DateFormat.format("hh:mm aa",calendar));
+                                //set firebase
+                                Map<String, Object> time = new HashMap<>();
+                                time.put("wakeHour", String.format("%02d",SuWHour));
+                                time.put("wakeMin", String.format("%02d",SuWMin));
+                                col.document("Sunday")
+                                        .set(time, SetOptions.merge());
                             }
                         },12,0,false
                 );
@@ -367,6 +604,12 @@ public class alarm extends AppCompatActivity {
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.set(0,0,0,SuSHour,SuSMin);
                                 SuSleep.setText(DateFormat.format("hh:mm aa",calendar));
+                                //set firebase
+                                Map<String, Object> time = new HashMap<>();
+                                time.put("wakeHour", String.format("%02d",SuSHour));
+                                time.put("wakeMin", String.format("%02d",SuSMin));
+                                col.document("Sunday")
+                                        .set(time, SetOptions.merge());
                             }
                         },12,0,false
                 );
@@ -608,28 +851,7 @@ public class alarm extends AppCompatActivity {
             }
         });
 
-        //Firebase抓時間
-        DocumentReference docRef = db.collection("User")
-                .document("jyqYBzD67eOCMCQY2j52b5aKcaH2")
-                .collection("time")
-                .document("Monday");
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Log.i("TAG", documentSnapshot.getString("wakeHour")+":"+documentSnapshot.getString("wakeMin"));
-                Log.i("TAG", documentSnapshot.getString("wakeMin"));
-                hour = documentSnapshot.getString("wakeHour");
-                minute = documentSnapshot.getString("wakeMin");
-                Calendar cal = Calendar.getInstance();
-                cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hour));
-                cal.set(Calendar.MINUTE, Integer.parseInt(minute));
-                cal.set(Calendar.SECOND, 0);
-                cal.set(Calendar.MILLISECOND, 0);
-                setAlarm(cal.getTimeInMillis());
-//                MWake.setText(documentSnapshot.getString("wakeHour")+":"+documentSnapshot.getString("wakeMin"));
-            }
 
-        });
     }
 
     private void setAlarm(long timeInMillis) {
