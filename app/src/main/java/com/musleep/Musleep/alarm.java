@@ -43,6 +43,7 @@ import java.util.Map;
 public class alarm extends AppCompatActivity {
     FirebaseFirestore db;
     String hour,minute;
+    int MWHour,MWMin,MSHour,MSMin,TWHour,TWMin,TSHour,TSMin,WWHour,WWMin,WSHour,WSMin,ThWHour,ThWMin,ThSHour,ThSMin,FWHour,FWMin,FSHour,FSMin,SWHour,SWMin,SSHour,SSMin,SuWHour,SuWMin,SuSHour,SuSMin;
     Boolean isFront;
     TextView MWake,MSleep,TWake,TSleep,WWake,WSleep,ThWake,ThSleep,FWake,FSleep,SWake,SSleep,SuWake,SuSleep;
     Float scale;
@@ -51,34 +52,6 @@ public class alarm extends AppCompatActivity {
     Button flip1,flip2,flip3,flip4,flip5,flip6,flip7;
     private Object alarm;
     String week1;
-    int MWHour;
-    int MWMin;
-    int MSHour;
-    int MSMin;
-    int TWHour;
-    int TWMin;
-    int TSHour;
-    int TSMin;
-    int WWHour;
-    int WWMin;
-    int WSHour;
-    int WSMin;
-    int ThWHour;
-    int ThWMin;
-    int ThSHour;
-    int ThSMin;
-    int FWHour;
-    int FWMin;
-    int FSHour;
-    int FSMin;
-    int SWHour;
-    int SWMin;
-    int SSHour;
-    int SSMin;
-    int SuWHour;
-    int SuWMin;
-    int SuSHour;
-    int SuSMin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -281,8 +254,8 @@ public class alarm extends AppCompatActivity {
                                 MSleep.setText(DateFormat.format("hh:mm aa",calendar));
                                 //set firebase
                                 Map<String, Object> time = new HashMap<>();
-                                time.put("wakeHour", String.format("%02d",MSHour));
-                                time.put("wakeMin", String.format("%02d",MSMin));
+                                time.put("sleepHour", String.format("%02d",MSHour));
+                                time.put("sleepMin", String.format("%02d",MSMin));
                                 col.document("Monday")
                                         .set(time, SetOptions.merge());
                             }
@@ -335,8 +308,8 @@ public class alarm extends AppCompatActivity {
                                 TSleep.setText(DateFormat.format("hh:mm aa",calendar));
                                 //set firebase
                                 Map<String, Object> time = new HashMap<>();
-                                time.put("wakeHour", String.format("%02d",TSHour));
-                                time.put("wakeMin", String.format("%02d",TSMin));
+                                time.put("sleepHour", String.format("%02d",TSHour));
+                                time.put("sleepMin", String.format("%02d",TSMin));
                                 col.document("Tuesday")
                                         .set(time, SetOptions.merge());
                             }
@@ -389,8 +362,8 @@ public class alarm extends AppCompatActivity {
                                 WSleep.setText(DateFormat.format("hh:mm aa",calendar));
                                 //set firebase
                                 Map<String, Object> time = new HashMap<>();
-                                time.put("wakeHour", String.format("%02d",WSHour));
-                                time.put("wakeMin", String.format("%02d",WSMin));
+                                time.put("sleepHour", String.format("%02d",WSHour));
+                                time.put("sleepMin", String.format("%02d",WSMin));
                                 col.document("Wednesday")
                                         .set(time, SetOptions.merge());
                             }
@@ -443,8 +416,8 @@ public class alarm extends AppCompatActivity {
                                 ThSleep.setText(DateFormat.format("hh:mm aa",calendar));
                                 //set firebase
                                 Map<String, Object> time = new HashMap<>();
-                                time.put("wakeHour", String.format("%02d",ThSHour));
-                                time.put("wakeMin", String.format("%02d",ThSMin));
+                                time.put("sleepHour", String.format("%02d",ThSHour));
+                                time.put("sleepMin", String.format("%02d",ThSMin));
                                 col.document("Thursday")
                                         .set(time, SetOptions.merge());
                             }
@@ -497,8 +470,8 @@ public class alarm extends AppCompatActivity {
                                 FSleep.setText(DateFormat.format("hh:mm aa",calendar));
                                 //set firebase
                                 Map<String, Object> time = new HashMap<>();
-                                time.put("wakeHour", String.format("%02d",FSHour));
-                                time.put("wakeMin", String.format("%02d",FSMin));
+                                time.put("sleepHour", String.format("%02d",FSHour));
+                                time.put("sleepMin", String.format("%02d",FSMin));
                                 col.document("Friday")
                                         .set(time, SetOptions.merge());
                             }
@@ -552,8 +525,8 @@ public class alarm extends AppCompatActivity {
                                 SSleep.setText(DateFormat.format("hh:mm aa",calendar));
                                 //set firebase
                                 Map<String, Object> time = new HashMap<>();
-                                time.put("wakeHour", String.format("%02d",SSHour));
-                                time.put("wakeMin", String.format("%02d",SSMin));
+                                time.put("sleepHour", String.format("%02d",SSHour));
+                                time.put("sleepMin", String.format("%02d",SSMin));
                                 col.document("Saturday")
                                         .set(time, SetOptions.merge());
                             }
@@ -606,8 +579,8 @@ public class alarm extends AppCompatActivity {
                                 SuSleep.setText(DateFormat.format("hh:mm aa",calendar));
                                 //set firebase
                                 Map<String, Object> time = new HashMap<>();
-                                time.put("wakeHour", String.format("%02d",SuSHour));
-                                time.put("wakeMin", String.format("%02d",SuSMin));
+                                time.put("sleepHour", String.format("%02d",SuSHour));
+                                time.put("sleepMin", String.format("%02d",SuSMin));
                                 col.document("Sunday")
                                         .set(time, SetOptions.merge());
                             }
