@@ -13,6 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
         <activity android:name=".Loading">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,31 +25,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".alarm" />
 
-
-
-        <activity android:name=".alarm">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <receiver android:name=".wakeup"
+        <receiver
+            android:name=".wakeup"
             android:enabled="true"
             android:exported="true" />
-
-
-        <activity android:name=".init_time"/>
+        <activity android:name=".sleep_dialog"
+            android:theme="@style/animation"/>
+        <activity android:name=".init_time" />
         <activity android:name=".Login" />
         <activity android:name=".Registration" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".MusicTest" />
+        <activity android:name=".MusicTest"/>
         <activity android:name=".userdata" />
         <activity android:name=".sleep_diary" />
         <activity android:name=".sleep_record" />
         <activity android:name=".homescreen" />
-        <activity android:name=".dairy_survey" />
+        <activity android:name=".dairy_survey"
+            android:theme="@style/animation"/>
 
         <meta-data
             android:name="com.google.android.gms.version"
