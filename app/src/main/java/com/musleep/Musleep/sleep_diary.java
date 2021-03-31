@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,9 +41,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class sleep_diary extends AppCompatActivity {
+    public static final String EXTRA_TEXT = "com.musleep.Musleep.EXTRA_TEXT";
+    public static final String EXTRA_NUMBER = "com.musleep.Musleep.EXTRA_NUMBER";
+
     private FirebaseFirestore db;
     private RecyclerView diary_list;
     private FirestoreRecyclerAdapter adapter;
+    Dialog dialog;
 
     Calendar today = new GregorianCalendar();
     int year = today.get(today.YEAR);
@@ -93,7 +101,7 @@ public class sleep_diary extends AppCompatActivity {
 
         //Query
         Query query = db.collection("User").document(mAuth.getUid()).collection("SleepDiary")
-                .orderBy("date", Query.Direction.DESCENDING);
+                .orderBy("date", Query.Direction.DESCENDING).limit(14);
         //RecyclerOptions
         FirestoreRecyclerOptions<diary_list> options = new FirestoreRecyclerOptions.Builder<diary_list>()
                 .setQuery(query, diary_list.class)
@@ -126,8 +134,11 @@ public class sleep_diary extends AppCompatActivity {
         //顯示當前日期
         TextView now_date = (TextView) findViewById(R.id.now_date);
         TextView now_week = findViewById(R.id.now_week);
-        String currentDate = year+"/"+month+"/"+day;
-        now_date.setText(currentDate);
+        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date current = new Date();
+        now_date.setText(sdFormat.format(current));
+//        String currentDate = year+"/"+month+"/"+day;
+//        now_date.setText(currentDate);
         if (week == 1){
             now_week.setText("星期日");
         }
@@ -166,7 +177,7 @@ public class sleep_diary extends AppCompatActivity {
                 DocumentReference docIdRef = rootRef.collection("User")
                         .document(mAuth.getUid())
                         .collection("SleepDiary")
-                        .document(year+"-"+month+"-"+day);
+                        .document(sdFormat.format(current));
                 //判斷文件是否存在
                 docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -184,7 +195,7 @@ public class sleep_diary extends AppCompatActivity {
                                 db.collection("User")
                                     .document(mAuth.getUid())
                                     .collection("SleepDiary")
-                                    .document(year+"-"+month+"-"+day)
+                                    .document(sdFormat.format(current))
                                     .set(dairy);
                                 Log.d("INFO", "Document does not exist!");
                             }
@@ -197,15 +208,15 @@ public class sleep_diary extends AppCompatActivity {
         });//睡眠日誌結束
 
         //選擇日期
-        TextView chosen_date = findViewById(R.id.chosen_date);
+//        TextView chosen_date = findViewById(R.id.chosen_date);
         Button chosen_date_btn = findViewById(R.id.chosen_date_btn);
-        TextView date2 = findViewById(R.id.date2);
-        TextView item1_1 = findViewById(R.id.item1_1);
-        TextView item2_1 = findViewById(R.id.item2_1);
-        TextView item3_1 = findViewById(R.id.item3_1);
-        TextView item4_1 = findViewById(R.id.item4_1);
-        TextView item5_1 = findViewById(R.id.item5_1);
-        TextView item6_1 = findViewById(R.id.item6_1);
+//        TextView date2 = findViewById(R.id.date2);
+//        TextView item1_1 = findViewById(R.id.item1_1);
+//        TextView item2_1 = findViewById(R.id.item2_1);
+//        TextView item3_1 = findViewById(R.id.item3_1);
+//        TextView item4_1 = findViewById(R.id.item4_1);
+//        TextView item5_1 = findViewById(R.id.item5_1);
+//        TextView item6_1 = findViewById(R.id.item6_1);
 
 
         chosen_date_btn.setOnClickListener(new View.OnClickListener() {
@@ -214,63 +225,72 @@ public class sleep_diary extends AppCompatActivity {
                 new DatePickerDialog(sleep_diary.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
-                        Calendar cal = Calendar.getInstance();
+//                        openDialog();
 
-                        //獲得選擇日期
+                        Calendar cal = Calendar.getInstance();
+//                        獲得選擇日期
                         cal.set(Calendar.YEAR, year);
                         cal.set(Calendar.MONTH, month+1);
                         cal.set(Calendar.DAY_OF_MONTH, day);
-                        String chosen_date_show = String.format("%d/%d/%d", year, month+1, day);
+//                        String chosen_date_show = String.format("%d/%d/%d", year, month+1, day);
                         //顯示生日（月份要+1，因為這個方法是從0開始算的）
-                        chosen_date.setText(chosen_date_show);
+//                        chosen_date.setText(chosen_date_show);
 
-                        String chosen_date_show2 = String.format("%d-%d-%d", year, month+1, day);
+                        String chosen_date_show2 = String.format("%d-%02d-%d", year, month+1, day);
 
                         DocumentReference docRef = db.collection("User")
                                 .document(mAuth.getUid())
                                 .collection("SleepDiary")
                                 .document(chosen_date_show2);
+                        Log.i("幹" ,chosen_date_show2);
+                        Intent intent = new Intent(sleep_diary.this,sleep_dialog.class);
+                        intent.putExtra(EXTRA_TEXT,chosen_date_show2);
+//                      intent.putExtra(EXTRA_NUMBER,number);
+                        startActivity(intent);
+//                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                                if (task.isSuccessful()) {
+//                                    DocumentSnapshot document = task.getResult();
+//                                    if (document.exists()) {
+////                        Log.d("TAG", "DocumentSnapshot data: " + document.getData().get("Name").toString());
+//                                        String date = document.getData().get("date").toString();
+//                                        String coffee = document.getData().get("coffee").toString();
+//                                        String drug = document.getData().get("drug").toString();
+//                                        String nap = document.getData().get("nap").toString();
+//                                        String sport = document.getData().get("sport").toString();
+//                                        String wakeup = document.getData().get("wakeup").toString();
+//                                        String wine = document.getData().get("wine").toString();
+//
+//                                        date2.setText(date);
+//                                        item1_1.setText(wakeup);
+//                                        item2_1.setText(nap);
+//                                        item3_1.setText(coffee);
+//                                        item4_1.setText(wine);
+//                                        item5_1.setText(drug);
+//                                        item6_1.setText(sport);
+//
+//                                        return;
+//
+//                                    } else {
+//                                        Log.d("TAG", "No such document");
+//                                    }
+//                                } else {
+//                                    Log.d("TAG", "get failed with ", task.getException());
+//                                }
+//                            }
+//                        });
 
-                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
-//                        Log.d("TAG", "DocumentSnapshot data: " + document.getData().get("Name").toString());
-                                        String date = document.getData().get("date").toString();
-                                        String coffee = document.getData().get("coffee").toString();
-                                        String drug = document.getData().get("drug").toString();
-                                        String nap = document.getData().get("nap").toString();
-                                        String sport = document.getData().get("sport").toString();
-                                        String wakeup = document.getData().get("wakeup").toString();
-                                        String wine = document.getData().get("wine").toString();
-
-                                        date2.setText(date);
-                                        item1_1.setText(wakeup);
-                                        item2_1.setText(nap);
-                                        item3_1.setText(coffee);
-                                        item4_1.setText(wine);
-                                        item5_1.setText(drug);
-                                        item6_1.setText(sport);
-
-                                        return;
-
-                                    } else {
-                                        Log.d("TAG", "No such document");
-                                    }
-                                } else {
-                                    Log.d("TAG", "get failed with ", task.getException());
-                                }
-                            }
-                        });
                     }
+
                     //設定初始的顯示日期
                 }, year, month-1, day).show();
             }
 
         });
+
     }
-
-
+    public void back(final View view) {
+        startActivity(new Intent(view.getContext(),homescreen.class));
+    }
 }

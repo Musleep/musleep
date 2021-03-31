@@ -1,20 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/background"
-    android:gravity="center"
-    android:orientation="horizontal"
     tools:context=".sleep_diary">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/brown"
+        android:elevation="6dp"
+        android:orientation="horizontal"
+        android:id="@+id/bar"
+        >
+        <ImageButton
+            android:id="@+id/button_back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/back"
+            android:onClick="back"
+            android:layout_weight="0.1"
+            android:gravity="left"
+            android:background="#00000000"
+            tools:ignore="MissingConstraints" />
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:letterSpacing="0.2"
+            android:text="睡眠日誌"
+            android:textColor="@color/white"
+            android:textSize="38dp"
+            tools:ignore="MissingConstraints" />
+<!--        <Button-->
+<!--            android:id="@+id/data_pick"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="0.1"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="#00000000"-->
+<!--            android:gravity="right"-->
+<!--            android:drawableTop="@drawable/base_write_dairy"-->
+<!--            />-->
+        <!--            <Button-->
+        <!--                android:id="@+id/data_pick"-->
+        <!--                android:layout_width="100dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:background="#00000000"-->
+        <!--                android:gravity="right"-->
+        <!--                android:drawableTop="@drawable/write_dairy"-->
+        <!--                tools:ignore="MissingConstraints" />-->
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/Date1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
         android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal">
         <Button
             android:id="@+id/chosen_date_btn"
@@ -45,7 +91,6 @@
             android:text="Week"
             android:layout_marginLeft="10dp"
             android:textStyle="bold" />
-
         <!--        <TextClock-->
         <!--            android:layout_width="wrap_content"-->
         <!--            android:layout_height="match_parent"-->
@@ -55,358 +100,233 @@
         <!--            android:textSize="25dp"-->
         <!--            android:textStyle="bold" />-->
 
-        <Button
-            android:id="@+id/data_pick"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:background="#00000000"
-            android:drawableTop="@drawable/ic_baseline_today_24"
-            android:gravity="center_horizontal" />
+
     </LinearLayout>
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/Date1"-->
-<!--        android:gravity="center_horizontal"-->
-<!--        android:orientation="horizontal">-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/chosen_date"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:textColor="#968C8C"-->
-<!--            android:textSize="25dp"-->
-<!--            android:text="該死的給我選日期"-->
-<!--            android:textStyle="bold" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/chosen_date_btn"-->
-<!--            android:layout_width="38dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_marginLeft="10dp"-->
-<!--            android:background="#00000000"-->
-<!--            android:drawableTop="@drawable/ic_baseline_today_24"-->
-<!--            android:gravity="center_horizontal" />-->
-<!--    </LinearLayout>-->
-
     <LinearLayout
-        android:layout_width="1100dp"
-        android:layout_height="600dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/radius"
-        android:elevation="20dp"
-        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:gravity="center">
-    <LinearLayout
-        android:layout_width="1000dp"
-        android:layout_height="500dp"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
-        <TableLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="visible"
-            tools:ignore="MissingConstraints">
 
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/date"
+        <LinearLayout
+            android:layout_width="1080dp"
+            android:layout_height="550dp"
+            android:padding="5dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/radius"
+            android:layout_gravity="center_horizontal"
+            android:elevation="20dp"
+            android:gravity="center">
+            <LinearLayout
+                android:layout_width="1000dp"
+                android:layout_height="500dp"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
+                <TableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#CFB194"
                     android:gravity="center"
-                    android:padding="10sp"
-                    android:text="日期"
-                    android:textAlignment="center"
-                    android:textColor="#A86959"
-                    android:textSize="20dp" />
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    >
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/item1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="睡眠中醒來"
-                    android:textAlignment="center"
-                    android:textColor="#A86959"
-                    android:textSize="20dp" />
-            </TableRow>
+                        <TextView
+                            android:id="@+id/date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#CFB194"
+                            android:gravity="center"
+                            android:padding="10sp"
+                            android:text="日期"
+                            android:textAlignment="center"
+                            android:textColor="#A86959"
+                            android:textSize="20dp" />
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/item1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/light_brown2"
+                            android:padding="10sp"
+                            android:text="睡眠中醒來"
+                            android:textAlignment="center"
+                            android:textColor="#A86959"
+                            android:textSize="20dp" />
+                    </TableRow>
 
-                <TextView
-                    android:id="@+id/item2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="小睡一會"
-                    android:textAlignment="center"
-                    android:textColor="#A86959"
-                    android:textSize="20dp" />
-            </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/item2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/light_brown2"
+                            android:padding="10sp"
+                            android:text="小睡一會"
+                            android:textAlignment="center"
+                            android:textColor="#A86959"
+                            android:textSize="20dp" />
+                    </TableRow>
 
-                <TextView
-                    android:id="@+id/item3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="喝含咖啡因飲料"
-                    android:textAlignment="center"
-                    android:textColor="#A86959"
-                    android:textSize="20dp" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/item3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/light_brown2"
+                            android:padding="10sp"
+                            android:text="喝含咖啡因飲料"
+                            android:textAlignment="center"
+                            android:textColor="#A86959"
+                            android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/item4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="喝酒"
-                    android:textAlignment="center"
-                    android:textColor="#A86959"
-                    android:textSize="20dp" />
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/item4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/light_brown2"
+                            android:padding="10sp"
+                            android:text="喝酒"
+                            android:textAlignment="center"
+                            android:textColor="#A86959"
+                            android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/item5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="服用幫助睡眠之藥物"
-                    android:textAlignment="center"
-                    android:textColor="#A86959"
-                    android:textSize="16dp" />
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/item5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:background="@color/light_brown2"
+                            android:padding="10sp"
+                            android:text="服用幫助睡眠之藥物"
+                            android:textAlignment="center"
+                            android:textColor="#A86959"
+                            android:textSize="16dp" />
 
-                <TextView
-                    android:id="@+id/item6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="運動"
-                    android:textAlignment="center"
-                    android:textColor="#A86959"
-                    android:textSize="20dp" />
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/item6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/light_brown2"
+                            android:padding="10sp"
+                            android:text="運動"
+                            android:textAlignment="center"
+                            android:textColor="#A86959"
+                            android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/item7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_brown2"
-                    android:padding="10sp"
-                    android:text="起床時間"
-                    android:textAlignment="center"
-                    android:textColor="#A86959"
-                    android:textSize="20dp" />
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-            </TableRow>
-            <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/item7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/light_brown2"
+                            android:padding="10sp"
+                            android:text="起床時間"
+                            android:textAlignment="center"
+                            android:textColor="#A86959"
+                            android:textSize="20dp" />
 
-            <TextView
-                android:id="@+id/item8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/light_brown2"
-                android:padding="10sp"
-                android:text="就寢時間"
-                android:textAlignment="center"
-                android:textColor="#A86959"
-                android:textSize="20dp" />
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-        </TableRow>
-            <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/item8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/light_brown2"
+                            android:padding="10sp"
+                            android:text="就寢時間"
+                            android:textAlignment="center"
+                            android:textColor="#A86959"
+                            android:textSize="20dp" />
 
-            <TextView
-                android:id="@+id/item9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/light_brown2"
-                android:padding="10sp"
-                android:text="睡眠效率"
-                android:textAlignment="center"
-                android:textColor="#A86959"
-                android:textSize="20dp" />
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-        </TableRow>
+                        <TextView
+                            android:id="@+id/item9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/light_brown2"
+                            android:padding="10sp"
+                            android:text="睡眠效率"
+                            android:textAlignment="center"
+                            android:textColor="#A86959"
+                            android:textSize="20dp" />
 
+                    </TableRow>
+                </TableLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/diary_list"
+                    android:layout_width="820dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" />
 
-        </TableLayout>
-<!--        //選擇日期顯示-->
-<!--        <TableLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:visibility="visible"-->
-<!--            tools:ignore="MissingConstraints">-->
+            </LinearLayout>
 
+        </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/data_pick"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_gravity="end|bottom"
+            android:layout_marginEnd="-75dp"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="@color/brown"
+            android:backgroundTintMode="src_atop"
+            android:elevation="12dp"
+            android:foreground="@drawable/base_write_dairy"
+            app:backgroundTint="@color/brown"
+            app:borderWidth="0dp"
+            app:pressedTranslationZ="6dp"
+            />
 
-<!--            <TableRow-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/date2"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="#CFB194"-->
-<!--                    android:gravity="center"-->
-<!--                    android:padding="10sp"-->
-<!--                    android:text="日期"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#A86959"-->
-<!--                    android:textSize="16sp" />-->
-<!--            </TableRow>-->
-<!--            <TableRow-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-
-
-<!--                <TextView-->
-<!--                    android:id="@+id/item1_1"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@color/light_brown2"-->
-<!--                    android:padding="10sp"-->
-<!--                    android:text="睡眠中醒來"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#A86959"-->
-<!--                    android:textSize="16sp" />-->
-<!--            </TableRow>-->
-
-<!--            <TableRow-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/item2_1"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@color/light_brown2"-->
-<!--                    android:padding="10sp"-->
-<!--                    android:text="小睡一會"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#A86959"-->
-<!--                    android:textSize="16sp" />-->
-<!--            </TableRow>-->
-
-<!--            <TableRow-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/item3_1"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@color/light_brown2"-->
-<!--                    android:padding="10sp"-->
-<!--                    android:text="喝含咖啡因飲料"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#A86959"-->
-<!--                    android:textSize="16sp" />-->
-<!--            </TableRow>-->
-<!--            <TableRow-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/item4_1"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@color/light_brown2"-->
-<!--                    android:padding="10sp"-->
-<!--                    android:text="喝酒"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#A86959"-->
-<!--                    android:textSize="16sp" />-->
-
-<!--            </TableRow>-->
-<!--            <TableRow-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/item5_1"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@color/light_brown2"-->
-<!--                    android:padding="10sp"-->
-<!--                    android:text="服用幫助睡眠之藥物"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#A86959"-->
-<!--                    android:textSize="14sp" />-->
-
-<!--            </TableRow>-->
-<!--            <TableRow-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/item6_1"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@color/light_brown2"-->
-<!--                    android:padding="10sp"-->
-<!--                    android:text="運動"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#A86959"-->
-<!--                    android:textSize="16sp" />-->
-
-<!--            </TableRow>-->
-<!--        </TableLayout>-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/diary_list"
-            android:layout_width="820dp"
-            android:layout_height="match_parent"
-            android:orientation="horizontal" />
-
-    </LinearLayout>
+        <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+        <!--            android:id="@+id/fab"-->
+        <!--            android:layout_width="56dp"-->
+        <!--            android:layout_height="56dp"-->
+        <!--            android:src="@drawable/ic_add_stock"-->
+        <!--            android:layout_alignParentBottom="true"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:layout_marginBottom="16dp"-->
+        <!--            android:layout_marginEnd="16dp"-->
+        <!--            app:elevation="6dp"-->
+        <!--            app:backgroundTint="@android:color/black"-->
+        <!--            app:pressedTranslationZ="16dp"/>-->
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

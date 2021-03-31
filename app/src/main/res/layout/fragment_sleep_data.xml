@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".sleep_data">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="3dp"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -32,7 +33,7 @@
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             >
             <TextView
                 android:id="@+id/sleep_hour"
@@ -69,20 +70,123 @@
                 />
 
         </LinearLayout>
-    </LinearLayout>
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="right"
-        android:layout_marginTop="100dp"
+        android:orientation="horizontal"
+        android:background="@drawable/sleepdata_bg"
         >
-        <com.github.mikephil.charting.charts.PieChart
-            android:layout_width="600dp"
-            android:layout_height="600dp"
-            android:id="@+id/piechart">
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="150dp"
+            android:gravity="center_vertical|right"
+            >
+            //效率
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="30dp"
+                >
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/sleep_effect"
+                android:text="96%"
+                android:paddingTop="27dp"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:textColor="@color/white"
+                android:layout_marginRight="10dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="效率"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/green1"
+            android:gravity="center_horizontal"
+            android:textSize="28dp"
 
+            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1231545645"
+                android:gravity="center_horizontal"
+                android:textColor="#A8A8A8"
+                android:id="@+id/sleepEffect"
+                android:textSize="23dp"
+                />
+            </LinearLayout>
+            </LinearLayout>
+            //音樂曲目
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="45dp"
+                >
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/music_name"
+                    android:paddingTop="17dp"
+                    android:textAlignment="center"
+                    android:textSize="28dp"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="10dp"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="音樂曲目"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textColor="@color/green1"
+                        android:gravity="center_horizontal"
+                        android:textSize="30dp"
+
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1231545645"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/musicName"
+                        android:textColor="#A8A8A8"
+                        android:textSize="23dp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-110dp"
+            android:layout_marginLeft="120dp">
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/piechart"
+            android:layout_width="650dp"
+            android:layout_height="650dp"
+            >
         </com.github.mikephil.charting.charts.PieChart>
+        </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
 
-</FrameLayout>
+
+
+</LinearLayout>

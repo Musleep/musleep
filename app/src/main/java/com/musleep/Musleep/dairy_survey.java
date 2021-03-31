@@ -12,7 +12,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +33,9 @@ public class dairy_survey extends AppCompatActivity {
         int year = today.get(today.YEAR);
         int month = today.get(today.MONTH) + 1;
         int day = today.get(today.DAY_OF_MONTH);
+        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date current = new Date();
+//                now_date.setText(sdFormat.format(current));
 
         //wakeup上傳radiogroup的ID
         RadioGroup radioGroup1 = (RadioGroup) findViewById(R.id.wakeup);
@@ -43,6 +48,7 @@ public class dairy_survey extends AppCompatActivity {
                 Log.i("INFO", String.valueOf(year));
                 Log.i("INFO", String.valueOf(month));
                 Log.i("INFO", String.valueOf(day));
+
                 switch (selectedId) {
                     case R.id.A1:
                         Map<String, Object> yes = new HashMap<>();
@@ -50,7 +56,7 @@ public class dairy_survey extends AppCompatActivity {
                         db.collection("User")
                                 .document(mAuth.getUid())
                                 .collection("SleepDiary")
-                                .document(year + "-" + month + "-" + day)
+                                .document(sdFormat.format(current))
                                 .update(yes);
                         Toast.makeText(dairy_survey.this, "是", Toast.LENGTH_SHORT).show();
                         break;
@@ -82,7 +88,7 @@ public class dairy_survey extends AppCompatActivity {
                         db.collection("User")
                                 .document(mAuth.getUid())
                                 .collection("SleepDiary")
-                                .document(year+"-"+month+"-"+day)
+                                .document(sdFormat.format(current))
                                 .update(yes);
                         Toast.makeText(dairy_survey.this,"是",Toast.LENGTH_SHORT).show();
                         break;
@@ -92,7 +98,7 @@ public class dairy_survey extends AppCompatActivity {
                         db.collection("User")
                                 .document(mAuth.getUid())
                                 .collection("SleepDiary")
-                                .document(year+"-"+month+"-"+day)
+                                .document(sdFormat.format(current))
                                 .update(no);
                         Toast.makeText(dairy_survey.this,"否",Toast.LENGTH_SHORT).show();
                         break;
@@ -119,7 +125,7 @@ public class dairy_survey extends AppCompatActivity {
                         db.collection("User")
                                 .document(mAuth.getUid())
                                 .collection("SleepDiary")
-                                .document(year+"-"+month+"-"+day)
+                                .document(sdFormat.format(current))
                                 .update(yes);
                         Toast.makeText(dairy_survey.this,"是",Toast.LENGTH_SHORT).show();
                         break;
@@ -129,7 +135,7 @@ public class dairy_survey extends AppCompatActivity {
                         db.collection("User")
                                 .document(mAuth.getUid())
                                 .collection("SleepDiary")
-                                .document(year+"-"+month+"-"+day)
+                                .document(sdFormat.format(current))
                                 .update(no);
                         Toast.makeText(dairy_survey.this,"否",Toast.LENGTH_SHORT).show();
                         break;
@@ -155,7 +161,7 @@ public class dairy_survey extends AppCompatActivity {
                         db.collection("User")
                                 .document(mAuth.getUid())
                                 .collection("SleepDiary")
-                                .document(year+"-"+month+"-"+day)
+                                .document(sdFormat.format(current))
                                 .update(yes);
                         Toast.makeText(dairy_survey.this,"是",Toast.LENGTH_SHORT).show();
                         break;
@@ -165,7 +171,7 @@ public class dairy_survey extends AppCompatActivity {
                         db.collection("User")
                                 .document(mAuth.getUid())
                                 .collection("SleepDiary")
-                                .document(year+"-"+month+"-"+day)
+                                .document(sdFormat.format(current))
                                 .update(no);
                         Toast.makeText(dairy_survey.this,"否",Toast.LENGTH_SHORT).show();
                         break;
@@ -192,7 +198,7 @@ public class dairy_survey extends AppCompatActivity {
                         db.collection("User")
                                 .document(mAuth.getUid())
                                 .collection("SleepDiary")
-                                .document(year+"-"+month+"-"+day)
+                                .document(sdFormat.format(current))
                                 .update(yes);
                         Toast.makeText(dairy_survey.this,"是",Toast.LENGTH_SHORT).show();
                         break;
@@ -202,7 +208,7 @@ public class dairy_survey extends AppCompatActivity {
                         db.collection("User")
                                 .document(mAuth.getUid())
                                 .collection("SleepDiary")
-                                .document(year+"-"+month+"-"+day)
+                                .document(sdFormat.format(current))
                                 .update(no);
                         Toast.makeText(dairy_survey.this,"否",Toast.LENGTH_SHORT).show();
                         break;
@@ -229,7 +235,7 @@ public class dairy_survey extends AppCompatActivity {
                         db.collection("User")
                                 .document(mAuth.getUid())
                                 .collection("SleepDiary")
-                                .document(year+"-"+month+"-"+day)
+                                .document(sdFormat.format(current))
                                 .update(yes);
                         Toast.makeText(dairy_survey.this,"是",Toast.LENGTH_SHORT).show();
                         break;
@@ -239,7 +245,7 @@ public class dairy_survey extends AppCompatActivity {
                         db.collection("User")
                                 .document(mAuth.getUid())
                                 .collection("SleepDiary")
-                                .document(year+"-"+month+"-"+day)
+                                .document(sdFormat.format(current))
                                 .update(no);
                         Toast.makeText(dairy_survey.this,"否",Toast.LENGTH_SHORT).show();
                         break;
